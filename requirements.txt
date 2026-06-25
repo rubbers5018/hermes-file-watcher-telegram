@@ -1,0 +1,17 @@
+# =============================================================================
+# Hermes File-Watcher Telegram Skill — Python Dependencies
+# =============================================================================
+# Install with: uv pip install -r requirements.txt
+# Or: pip install -r requirements.txt
+# =============================================================================
+
+# --- Core runtime ------------------------------------------------------------
+watchdog>=4.0.0           # Cross-platform filesystem monitoring
+requests>=2.31.0          # HTTP client for Telegram Bot API
+pyyaml>=6.0.1             # YAML config parsing
+
+# --- Type checking (optional, for development) -------------------------------
+types-requests>=2.31.0    # type stubs for requests
+
+# --- Hermes-compatible structured logging is provided by stdlib logging ------
+# No external logging dependency needed
