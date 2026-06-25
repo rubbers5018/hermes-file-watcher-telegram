@@ -1,0 +1,60 @@
+# =============================================================================
+# Hermes Agent Configuration — File-Watcher Telegram Webhook Route
+# =============================================================================
+# Place this file (or merge its contents) into: ~/.hermes/config.yaml
+#
+# This configuration registers the telegram_updates webhook route and
+# enables the file-watcher skill to push real-time notifications.
+# =============================================================================
+
+platforms:
+  webhooks:
+    enabled: true
+    port: 8644
+    watch_root: "~/.hermes"
+    routes:
+      telegram_updates:
+        secret: "YOUR_WEBHOOK_SECRET_HERE"
+        # The secret is used to validate incoming webhook payloads.
+        # Generate a strong random secret with:
+        #   openssl rand -base64 32
+
+  telegram:
+    enabled: true
+    # The bot token lives in ~/.hermes/.env as TELEGRAM_BOT_TOKEN
+    # Never commit secrets to version control.
+
+  cron:
+    enabled: true
+    # Enables background file-watcher tasks while the desktop client
+    # is disconnected. The skill runs as a persistent daemon.
+
+# =============================================================================
+# Hermes Dashboard (optional — for remote monitoring)
+# =============================================================================
+dashboard:
+  host: "0.0.0.0"
+  port: 9119
+  oauth:
+    client_id: "agent:your_unique_instance_id"
+  basic_auth:
+    session_ttl_seconds: 43200
+
+# =============================================================================
+# Optional: File-watcher tuning
+# =============================================================================
+file_watcher:
+  debounce_seconds: 2.0
+  include_patterns:
+    - "*"
+  ignore_patterns:
+    - "*.tmp"
+    - "*.cache"
+    - "*.pyc"
+    - "__pycache__/*"
+    - "*.log"
+    - ".git/*"
+    - "venv/*"
+    - ".venv/*"
+    - "node_modules/*"
+    - "memory/*.db-journal"
